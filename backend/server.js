@@ -12,7 +12,10 @@ const cors = require('cors')
 
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://summer-internship-2nd-year-frontend.onrender.com',
+    credentials: true
+}));
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
