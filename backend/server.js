@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express')
 const app = express();
 const { connectToDatabase } = require('./connectToDatabase')
@@ -44,8 +45,9 @@ app.use(
     dashboardRoute
 )
 
-const PORT = 8000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-})
-connectToDatabase();
+const PORT = process.env.PORT || 8000;
+connectToDatabase().then(() => {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+});
